@@ -28,7 +28,7 @@ class Solution {
     }
 }
 
-//Solution #2
+//Solution #2 (better space complexity)
 class Solution {
     public int[] productExceptSelf(int[] nums) {
         
