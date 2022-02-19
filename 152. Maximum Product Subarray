@@ -1,0 +1,49 @@
+
+//brute force solution O(n^2)
+class Solution {
+    public int maxProduct(int[] nums) {
+    
+        int maxProduct = nums[0];
+        int currentProduct=1;
+        
+        for (int i=0; i<nums.length; i++){
+            for (int j=i; j<nums.length; j++){
+                currentProduct = currentProduct * nums[j];
+                maxProduct = Math.max(maxProduct, currentProduct);
+            }   
+            currentProduct = 1;
+        }
+       
+        return maxProduct;
+   }
+}
+
+//optimized solution (O(n))
+class Solution {
+    public int maxProduct(int[] nums) {
+            
+        int currMax=1;
+        int currMin=1;
+        int finalMax = nums[0];
+        
+        
+        for (int i=0; i<nums.length; i++){
+           if (nums[i]==0){
+               finalMax = Math.max(finalMax, nums[i]);
+               currMax=1;
+               currMin=1;
+               continue;
+           } 
+           
+            int tmp = currMax;
+            int firstTwoMax = Math.max(currMax * nums[i], currMin * nums[i]);
+            currMax = Math.max(firstTwoMax, nums[i]);
+            int firstTwoMin = Math.min(tmp * nums[i], currMin * nums[i]);
+            currMin = Math.min(firstTwoMin, nums[i]);
+            finalMax = Math.max(finalMax, currMax);           
+            
+        }
+        
+        return finalMax;
+   }
+}
